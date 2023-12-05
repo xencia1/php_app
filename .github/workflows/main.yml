@@ -56,15 +56,21 @@ jobs:
           path: release.zip
            
   
-  deploy:
-    runs-on: self-hosted
-    strategy:
-      matrix:
-        runner: [runner1, runner2]
+  deploy1:
+    runs-on: runner1
+
     needs: build
     steps:
      - name: Move file
        run: |
           mv /home/sumanth.n/actions-runner/_work/php_app/php_app/release.zip /home/sumanth.n/actions-runner/prod
+  deploy2:
+    runs-on: runner2
+
+    needs: build
+    steps:
+     - name: Move file
+       run: |
+          mv /home/sumanth.n/actions-runner/_work/php_app/php_app/release.zip /home/sumanth.n/actions-runner/prod2
          
        
