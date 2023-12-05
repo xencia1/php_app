@@ -65,7 +65,7 @@ jobs:
        run: |
           mv /home/sumanth.n/actions-runner/_work/php_app/php_app/release.zip /home/sumanth.n/actions-runner/prod
           cd /home/sumanth.n/actions-runner/prod
-          unzip release.zip
+          unzip -o release.zip
   deploy2:
     runs-on: runner2
 
@@ -75,6 +75,6 @@ jobs:
        run: |
           mv /home/sumanth.n/actions-runner/_work/php_app/php_app/release.zip /home/sumanth.n/actions-runner/prod2
           cd /home/sumanth.n/actions-runner/prod2
-          unzip release.zip
+          unzip -o release.zip
          
        
