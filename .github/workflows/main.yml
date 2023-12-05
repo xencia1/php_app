@@ -64,8 +64,8 @@ jobs:
      - name: Move file
        run: |
           mv /home/sumanth.n/actions-runner/_work/php_app/php_app/release.zip /home/sumanth.n/actions-runner/prod
-     - name: unzip artifact for deployment
-       run: unzip -o release.zip 
+          cd /home/sumanth.n/actions-runner/prod
+          unzip release.zip
   deploy2:
     runs-on: runner2
 
@@ -74,7 +74,7 @@ jobs:
      - name: Move file
        run: |
           mv /home/sumanth.n/actions-runner/_work/php_app/php_app/release.zip /home/sumanth.n/actions-runner/prod2
-     - name: unzip artifact for deployment
-       run: unzip -o release.zip  
+          cd /home/sumanth.n/actions-runner/prod2
+          unzip release.zip
          
        
