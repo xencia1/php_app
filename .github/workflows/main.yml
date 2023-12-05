@@ -10,7 +10,10 @@ on:
  
 jobs:
   build:
-    runs-on: self-hosted, KSL_RG, runner1, runner2
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        runner: [runner1, runner2]
            
  
     steps:   
@@ -51,9 +54,13 @@ jobs:
         with:
           name: php_app
           path: release.zip
-          
+           
+  
   deploy:
-    runs-on: self-hosted, KSL_RG, runner1, runner2
+    runs-on: self-hosted
+    strategy:
+      matrix:
+        runner: [runner1, runner2]
     needs: build
     steps:
      - name: Move file
