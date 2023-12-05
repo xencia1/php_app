@@ -12,7 +12,8 @@ jobs:
   build:
     runs-on: 
       group: KSL_RG
-      labels: runner2
+      labels: runner1,runner2
+      
  
     steps:   
  
@@ -56,7 +57,7 @@ jobs:
   deploy:
     runs-on: 
       group: KSL_RG
-      labels: runner2
+      labels: runner1,runner2
     needs: build
     steps:
      - name: Move file
