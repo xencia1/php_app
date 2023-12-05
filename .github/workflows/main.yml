@@ -10,10 +10,8 @@ on:
  
 jobs:
   build:
-    runs-on: 
-      group: KSL_RG
-      labels: runner1,runner2
-      
+    runs-on: self-hosted, KSL_RG, runner1, runner2
+           
  
     steps:   
  
@@ -55,9 +53,7 @@ jobs:
           path: release.zip
           
   deploy:
-    runs-on: 
-      group: KSL_RG
-      labels: runner1,runner2
+    runs-on: self-hosted, KSL_RG, runner1, runner2
     needs: build
     steps:
      - name: Move file
