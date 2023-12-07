@@ -65,15 +65,13 @@ jobs:
         #id: deploy-to-webapp       
         #uses:  appleboy/ssh-action@master
         #uses: easingthemes/ssh-deploy@main
-        uses: appleboy/scp-action@v2
-        with:          
-          host : ${{secrets.HOST}}
-          username : ${{secrets.USER}}          
-          port : ${{secrets.PORT}}
-          password : ${{secrets.PASS}}          
-          source : ./
-          target: /home/sumanth.n/prod
-          strip_components: 1
-
+      - name: 'Copy files to remote'
+        uses: gappleas/ftp-action@v0.2.0
+        with:
+         host: ${{ secrets.HOST }}
+         username: ${{ secrets.USER }}
+         password: ${{ secrets.PASS }}
+         localDir: "./"
+         remoteDir: "/home/sumanth.n/prod"
  
          
