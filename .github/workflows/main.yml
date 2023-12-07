@@ -81,22 +81,23 @@ jobs:
           path: release.zip
 
 
-      - name: 'Deploy to Azure VM'
- 
-        uses: garygrossgarten/github-action-scp@release
- 
+  deploy:
+    needs: build
+    runs-on: runner1
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
         with:
- 
-          host: ${{secrets.HOST}}
- 
-          username: ${{secrets.USER}}
- 
-          port: ${{secrets.PORT}}
- 
-          password: ${{secrets.PASS}}
- 
-          local: ./
- 
-          remote: /home/sumanth.n/prod2
+          name: php_app
+          path: release.zip
+
+      - name: Deploy to VM
+        run: |
+          sshpass -p ${{ secrets.VM_PASSWORD }} scp -o StrictHostKeyChecking=no release.zip ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}:/home/sumanth.n/prod2
+          sshpass -p ${{ secrets.VM_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} 'unzip /home/sumanth.n/prod2/release.zip -d /home/sumanth.n/prod2 && rm /home/sumanth.n/prod2/release.zip'
+        env:
+          VM_IP: ${{ secrets.VM_IP }}
+          VM_USERNAME: ${{ secrets.VM_USERNAME }}
+          VM_PASSWORD: ${{ secrets.VM_PASSWORD }}
  
          
