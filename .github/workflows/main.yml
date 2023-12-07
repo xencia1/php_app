@@ -66,12 +66,12 @@ jobs:
         #uses:  appleboy/ssh-action@master
         #uses: easingthemes/ssh-deploy@main
       - name: 'Copy files to remote'
-        uses: gappleas/ftp-action@v0.2.0
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-         host: ${{ secrets.HOST }}
-         username: ${{ secrets.USER }}
-         password: ${{ secrets.PASS }}
-         localDir: "./"
-         remoteDir: "/home/sumanth.n/prod"
+          server: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASS }}
+          localDir: "./"
+          remoteDir: "/home/sumanth.n/prod"
  
          
