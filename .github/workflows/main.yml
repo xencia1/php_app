@@ -11,11 +11,7 @@ on:
 jobs:
   build:
     runs-on: runner1
- 
-           
- 
     steps:   
- 
       - name: Setup PHP        
         uses: actions/checkout@v2
         with:
@@ -53,12 +49,6 @@ jobs:
           name: php_app
           path: release.zip
            
-  
-  deploy1:
-    runs-on: runner1
-
-    needs: build
-    steps:
       - name: 'Deploy to Azure VM'
         with:          
           host : ${{secrets.HOST}}
@@ -66,7 +56,7 @@ jobs:
           port : ${{secrets.PORT}}
           password : ${{secrets.PASS}}          
           source : ./
-          target: /var/www/html/Prod2
+          target: /home/sumanth.n/prod2
 
 
          
