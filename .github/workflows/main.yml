@@ -53,11 +53,11 @@ jobs:
     needs: build
     runs-on: runner1
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: php_app
-          path: release.zip
+      #- name: Download artifact
+      #  uses: actions/download-artifact@v2
+      #  with:
+        #  name: php_app
+        #  path: release.zip
 
       - name: Deploy to VM
         run: |
