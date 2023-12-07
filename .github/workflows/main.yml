@@ -61,9 +61,9 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          sshpass -p ${{ secrets.VM_PASSWORD }} scp -o StrictHostKeyChecking=no release.zip ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}
-          mkdir prod2
-          sshpass -p ${{ secrets.VM_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} 'unzip /home/sumanth.n/prod/release.zip -d /home/sumanth.n/prod2 && rm /home/sumanth.n/prod2/release.zip'
+          sshpass -p ${{ secrets.VM_PASSWORD }} scp -o StrictHostKeyChecking=no release.zip ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}: mkdir prod2test
+        
+          #sshpass -p ${{ secrets.VM_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} 'unzip /home/sumanth.n/prod/release.zip -d /home/sumanth.n/prod2 && rm /home/sumanth.n/prod2/release.zip'
         env:
           VM_IP: ${{ secrets.VM_IP }}
           VM_USERNAME: ${{ secrets.VM_USERNAME }}
