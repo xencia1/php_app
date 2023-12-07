@@ -61,7 +61,7 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          sshpass -p ${{ secrets.VM_PASSWORD }} scp -o StrictHostKeyChecking=no release.zip ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}: /home/azureuser/prod
+          sshpass -p ${{ secrets.VM_PASSWORD }} scp -o StrictHostKeyChecking=no release.zip ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }}: /home/azureuser
 
         
           #sshpass -p ${{ secrets.VM_PASSWORD }} ssh -o StrictHostKeyChecking=no ${{ secrets.VM_USERNAME }}@${{ secrets.VM_IP }} 'unzip /home/sumanth.n/prod/release.zip -d /home/sumanth.n/prod && rm /home/sumanth.n/prod/release.zip'
