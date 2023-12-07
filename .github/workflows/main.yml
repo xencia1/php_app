@@ -130,7 +130,7 @@ jobs:
 
       - name: 'Deploy to Azure VM'
  
-        uses: appleboy/scp-action@v0.1.4
+        uses: peter-evans/scp-sync-action@v2
  
         with:
  
