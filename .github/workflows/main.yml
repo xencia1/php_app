@@ -49,14 +49,15 @@ jobs:
           name: php_app
           path: release.zip
            
-     # - name: 'Deploy to Azure VM'
-      #  with:          
-       #   host : ${{secrets.HOST}}
-        #  username : ${{secrets.USER}}          
-         # port : ${{secrets.PORT}}
-         # password : ${{secrets.PASS}}          
-          #source : ./
-         # target: /home/sumanth.n/prod2
+      - name: 'Deploy to Azure VM'
+        uses: appleboy/scp-action@v0.1.4
+        with:          
+          host : ${{secrets.HOST}}
+          username : ${{secrets.USER}}          
+          port : ${{secrets.PORT}}
+          password : ${{secrets.PASS}}          
+          source : ./
+          target: /home/sumanth.n/prod2
 
 
          
