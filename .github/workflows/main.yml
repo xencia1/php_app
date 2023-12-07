@@ -60,7 +60,7 @@ jobs:
           name: php_app          
           #path: "php-app-dep/"
       - name: unzip artifact for deployment
-        run: unzip release.zip 
+        run: unzip -o release.zip 
      
         #id: deploy-to-webapp       
         #uses:  appleboy/ssh-action@master
