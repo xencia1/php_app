@@ -80,53 +80,6 @@ jobs:
  
           path: release.zip
 
-  deploy:
- 
-    runs-on: runner1
- 
-    needs: build
- 
-    steps:
- 
-      - name: Download artifact from build job
- 
-        uses: actions/download-artifact@v3
- 
-        with:
- 
-          name: php_app
-
-      - name: Debugging - List files in working directory
- 
-        run: ls -al
-
-      #- name: Debugging - List files in artifact
- 
-        #run: unzip -l php-app.zip
-
-      #- name: Unzip artifact for deployment
- 
-       # run: unzip php-app.zip
-
-      #- name: Set up Docker Buildx
- 
-        #uses: docker/setup-buildx-action@v1
-
-      #- name: Build and Push Docker image
- 
-        #uses: docker/build-push-action@v2
- 
-        #with:
- 
-          #context: .
- 
-          #push: true
- 
-          #tags: phpapp:latest
- 
-          #build-args: |
- 
-            # Add any build arguments if needed
 
       - name: 'Deploy to Azure VM'
  
