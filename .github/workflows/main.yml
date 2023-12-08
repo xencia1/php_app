@@ -50,30 +50,34 @@ jobs:
           path: release.zip
 
   
-  #deploy:
-   # runs-on: runner1
-    #needs: build
-   # steps:
-     # - name: Download artifact from build job
-       # uses: actions/download-artifact@v3
-        #with:
-         # name: php_app          
-          #path: "php-app-dep/"
-   
-  	deploy:
-    name: Build
+  deploy:
     runs-on: runner1
+    needs: build
     steps:
-    - uses: actions/checkout@v3
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        password: ${{ secrets.PASS }}
-        port: ${{ secrets.PORT }}
-        source: './'
-        target: '/home/sumanth.n/prod/'
+      - name: Download artifact from build job
+        uses: actions/download-artifact@v3
+        with:
+          name: php-app          
+          #path: "php-app-dep/"
+      - name: unzip artifact for deployment
+        run: unzip release.zip 
+      - name: 'Deploy to Azure VM'
+        #id: deploy-to-webapp       
+        #uses:  appleboy/ssh-action@master
+        #uses: easingthemes/ssh-deploy@main
+        uses: appleboy/scp-action@v0.1.4
+        with:          
+          host : ${{secrets.HOST}}
+          username : ${{secrets.USER}}          
+          port : ${{secrets.PORT}}
+          password : ${{secrets.PASS}}          
+          source : ./
+          target: /home/sumanth.n/prod
+          strip_components: 1
+          #script: whoami|
+           #whoami
+           #ls -al
+           #pwd
 
  
          
