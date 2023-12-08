@@ -51,33 +51,33 @@ jobs:
 
   
   deploy:
-    runs-on: ubuntu-latest
     needs: build
+    runs-on: runner1
     steps:
-      - name: Download artifact from build job
-        uses: actions/download-artifact@v3
-        with:
-          name: php_app          
-          path: ./
-      - name: unzip artifact for deployment
-        run: unzip -o release.zip 
-      - name: 'Deploy to Azure VM'
-        #id: deploy-to-webapp       
-        #uses:  appleboy/ssh-action@master
-        #uses: easingthemes/ssh-deploy@main
-        uses: appleboy/scp-action@v0.1.4
-        with:          
-          host : ${{secrets.HOST}}
-          username : ${{secrets.USER}}          
-          port : ${{secrets.PORT}}
-          password : ${{secrets.PASS}}          
-          source : ./
-          target: /home/sumanth.n/prod
-          strip_components: 1
-          #script: whoami|
-           #whoami
-           #ls -al
-           #pwd
+    - name: Download artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: php_app  # replace with your artifact name
+
+    - name: Copy Files to Server
+      uses: appleboy/scp-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PASS }}
+        source: "release.zip"
+        target: "/home/sumanth.n/prod"
+
+    - name: Execute Deployment Commands Over SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USER }}
+        password: ${{ secrets.PASS }}
+        script: |
+          cd /home/sumanth.n/prod
+          unzip release.zip
+          
 
  
          
