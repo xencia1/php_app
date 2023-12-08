@@ -62,16 +62,13 @@ jobs:
       - name: unzip artifact for deployment
         run: unzip -o release.zip 
      
-        #id: deploy-to-webapp       
-        #uses:  appleboy/ssh-action@master
-        #uses: easingthemes/ssh-deploy@main
-      - name: 'Copy files to remote'
-        uses: gftp-upload@v4
+      - name: Execute commands over SSH
+        uses: appleboy/ssh-action@master
         with:
-         local: './'
          host: ${{ secrets.HOST }}
          username: ${{ secrets.USER }}
          password: ${{ secrets.PASS }}
-         remote: '/home/sumanth.n/prod/'
+         script: |
+          cd /home/sumanth.n/prod/
  
          
