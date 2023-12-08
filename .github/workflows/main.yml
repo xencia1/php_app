@@ -61,8 +61,8 @@ jobs:
           #path: "php-app-dep/"
    
 
-      - name: build
-      - uses: actions/checkout@v3
+      #- name: build
+      #- uses: actions/checkout@v3
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.4
         with:
