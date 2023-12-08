@@ -66,12 +66,12 @@ jobs:
         #uses:  appleboy/ssh-action@master
         #uses: easingthemes/ssh-deploy@main
       - name: 'Copy files to remote'
-        uses: wlixcc/SFTP-Deploy-Action@v2.1
+        uses: gftp-upload@v4
         with:
+         local: './'
+         host: ${{ secrets.HOST }}
          username: ${{ secrets.USER }}
-         server: ${{ secrets.HOST }}
-         ssh_password: ${{ secrets.PASS }}
-         local_path: './'
-         remote_path: '/home/sumanth.n/prod/'
+         password: ${{ secrets.PASS }}
+         remote: '/home/sumanth.n/prod/'
  
          
