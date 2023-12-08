@@ -54,28 +54,26 @@ jobs:
     needs: build
     runs-on: runner1
     steps:
-    - name: Download artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: php_app  # replace with your artifact name
+   # - name: Download artifact
+     # uses: actions/download-artifact@v2
+     # with:
+        #name: php_app  # replace with your artifact name
 
-    - name: Copy Files to Server
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        password: ${{ secrets.PASS }}
-        source: "release.zip"
-        target: "./"
+   # - name: Copy Files to Server
+     # uses: appleboy/scp-action@master
+     # with:
+       # host: ${{ secrets.HOST }}
+        #username: ${{ secrets.USER }}
+        #password: ${{ secrets.PASS }}
+       # source: "release.zip"
+       # target: "./"
 
-    - name: Execute Deployment Commands Over SSH
-      uses: appleboy/ssh-action@master
+    - name: 'Login via Azure CLI'
+      uses: azure/login@v1
       with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USER }}
-        password: ${{ secrets.PASS }}
-        script: |
-         az ssh vm --resource-group ACRforNODEJSapp-RG --vm-name Vmforself-hosted --subscription 5cd17d19-e661-4e65-a5de-3012829b10e9
+         creds: ${{ secrets.AZURE_CREDENTIALS }}
+         run: |
+          az ssh vm --resource-group ACRforNODEJSapp-RG --vm-name Vmforself-hosted --subscription 5cd17d19-e661-4e65-a5de-3012829b10e9
           cd /home/sumanth.n/prod
           unzip release.zip
           
