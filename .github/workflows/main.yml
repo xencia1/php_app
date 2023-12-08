@@ -61,16 +61,18 @@ jobs:
           #path: "php-app-dep/"
    
 
-      #- name: build
-      #- uses: actions/checkout@v3
-      - name: 'Copy files to remote'
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+      - name: Build
+ 
+      - uses: actions/checkout@v3
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.4
         with:
+         host: ${{ secrets.HOST }}
          username: ${{ secrets.USER }}
-         server: ${{ secrets.HOST }}
-         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-         local_path: './'
-         remote_path: '/home/sumanth.n/prod/'
+         password: ${{ secrets.PASS }}
+         port: ${{ secrets.PORT }}
+         source: './'
+         target: '/home/sumanth.n/prod/'
 
  
          
