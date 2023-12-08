@@ -57,7 +57,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: php-app          
+          name: php_app          
           #path: "php-app-dep/"
       - name: unzip artifact for deployment
         run: unzip release.zip 
