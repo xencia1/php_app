@@ -50,6 +50,13 @@ jobs:
     needs: build
     runs-on: runner1
     steps:
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v3
+      with:
+          name: php_app          
+          path: release.zip
+    - name: unzip artifact for deployment
+      run: unzip release.zip
     - name: 'Login via Azure CLI'
       uses: azure/login@v1
       with:
@@ -61,7 +68,8 @@ jobs:
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}
           password : ${{secrets.PASS}}          
-          path: /home/sumanth.n/actions-runner/_work/php_app/* /home/sumanth.n/prod
+          source: /home/sumanth.n/actions-runner/_work/php_app/* 
+          target: /home/sumanth.n/prod
           
  
          
