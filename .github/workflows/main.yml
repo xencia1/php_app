@@ -63,7 +63,7 @@ jobs:
         run: unzip -o release.zip 
      
       - name: Execute commands over SSH
-        uses: appleboy/ssh-action@master
+        uses: Sumanthxencia/appleboy_ssh-action@master
         with:
          host: ${{ secrets.HOST }}
          username: ${{ secrets.USER }}
