@@ -1,4 +1,7 @@
 name: Prod-Deploy
+env: 
+  PHP_VERSION: '8.x'        
+  CI : false
 on:
   push:
     branches:
