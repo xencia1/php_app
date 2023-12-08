@@ -52,7 +52,7 @@ jobs:
   
   deploy:
     runs-on: runner1
-    needs: build
+    #needs: build
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
