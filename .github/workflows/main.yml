@@ -66,12 +66,12 @@ jobs:
         #uses:  appleboy/ssh-action@master
         #uses: easingthemes/ssh-deploy@main
       - name: 'Copy files to remote'
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        uses: wlixcc/SFTP-Deploy-Action@v2.1
         with:
-          server: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          password: ${{ secrets.PASS }}
-          local-dir: "./"
-          server-dir: "/home/sumanth.n/prod/"
+         username: ${{ secrets.USER }}
+         server: ${{ secrets.HOST }}
+         ssh_password: ${{ secrets.PASS }}
+         local_path: './'
+         remote_path: '/home/sumanth.n/prod/'
  
          
