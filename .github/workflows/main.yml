@@ -75,6 +75,7 @@ jobs:
         username: ${{ secrets.USER }}
         password: ${{ secrets.PASS }}
         script: |
+         az ssh vm --resource-group ACRforNODEJSapp-RG --vm-name Vmforself-hosted --subscription 5cd17d19-e661-4e65-a5de-3012829b10e9
           cd /home/sumanth.n/prod
           unzip release.zip
           
