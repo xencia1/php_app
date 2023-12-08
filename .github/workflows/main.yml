@@ -59,16 +59,19 @@ jobs:
         with:
           name: php_app          
           #path: "php-app-dep/"
-      - name: unzip artifact for deployment
-        run: unzip -o release.zip 
-     
-      - name: Execute commands over SSH
-        uses: Sumanthxencia/appleboy_ssh-action@master
+   
+
+      - name: build
+      - uses: actions/checkout@v3
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@v0.1.4
         with:
-         host: ${{ secrets.HOST }}
-         username: ${{ secrets.USER }}
-         password: ${{ secrets.PASS }}
-         script: |
-          cd /home/sumanth.n/prod/
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASS }}
+          port: ${{ secrets.PORT }}
+          source: ./
+          target: /home/sumanth.n/prod2
+
  
          
