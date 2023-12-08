@@ -50,14 +50,11 @@ jobs:
     needs: build
     runs-on: runner1
     steps:
-    - name: 'Login via Azure CLI'
-      uses: azure/login@v1
-      with:
-         creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - name: tar all files
-      run: |
-         sudo tar /tmp/pMOufhPSrY.tar.gz
-    
+   # - name: 'Login via Azure CLI'
+      #uses: azure/login@v1
+     # with:
+        # creds: ${{ secrets.AZURE_CREDENTIALS }}
+       
     - name: 'Deploy to Azure VM'
       uses: appleboy/scp-action@v0.1.4
       with:          
@@ -65,8 +62,8 @@ jobs:
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}
           password : ${{secrets.PASS}}          
-          source: /home/sumanth.n/actions-runner/_work/php_app/* 
-          target: /home/sumanth.n/prod
+          #source: /home/sumanth.n/actions-runner/_work/php_app/* 
+          #target: /home/sumanth.n/prod
       
 
           
