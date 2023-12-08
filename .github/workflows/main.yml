@@ -71,7 +71,7 @@ jobs:
           server: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           password: ${{ secrets.PASS }}
-          localDir: "./"
-          remoteDir: "/home/sumanth.n/prod"
+          local-dir: "./"
+          server-dir: "/home/sumanth.n/prod"
  
          
