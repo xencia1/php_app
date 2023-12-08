@@ -58,7 +58,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: php_app          
-          #path: "php-app-dep/"
+          path: ./
       - name: unzip artifact for deployment
         run: unzip -o release.zip 
       - name: 'Deploy to Azure VM'
