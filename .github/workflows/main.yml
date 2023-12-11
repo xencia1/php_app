@@ -9,7 +9,7 @@ on:
  
 jobs:
   build:
-    runs-on: runner1
+    runs-on: self-hosted
     steps:   
       - name: Setup PHP        
         uses: actions/checkout@v2
@@ -51,7 +51,7 @@ jobs:
   
   deploy:
     needs: build
-    runs-on: runner1
+    runs-on: self-hosted
     steps:
     - name: 'Deploy to Azure VM'
       uses: appleboy/ssh-action@master
