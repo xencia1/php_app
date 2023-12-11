@@ -58,10 +58,11 @@ jobs:
       with:
           host: ${{secrets.VM_HOST}}
           username: ${{secrets.VM_USER}}
-          password: ${{secrets.VM_PASS}}
+          key: ${{secrets.VM_KEY}}
           port: ${{secrets.VM_PORT}}
-          script: |
-            scp -r /home/sumanth.n/actions-runner/_work/php_app/php_app self-hostedvm2@10.0.2.6:/home/sumanth.n/prod
+          source : ./
+          target: /home/ksl_deploy3/prod3
+          strip_components: 1
 
           
  
