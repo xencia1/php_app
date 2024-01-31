@@ -70,5 +70,5 @@ jobs:
           port : ${{secrets.PORT}}
           key : ${{secrets.VM_KEY}}          
           source : ./
-          target: /home/ksl_deploy3/prod3
+          target: /home/azureuser/prod
           strip_components: 1      
