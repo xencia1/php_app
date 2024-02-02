@@ -56,13 +56,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: php_app          
-          #path: "php-app-dep/"
       - name: unzip artifact for deployment
         run: unzip -o release.zip 
       - name: 'Deploy to Azure VM'
-        #id: deploy-to-webapp       
-        #uses:  appleboy/ssh-action@master
-        #uses: easingthemes/ssh-deploy@main
         uses: actions/checkout@v4
         with:          
           host : ${{secrets.HOST}}
