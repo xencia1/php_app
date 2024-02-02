@@ -10,7 +10,7 @@ on:
  
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: cmsrunner1
  
     steps:   
  
@@ -49,7 +49,7 @@ jobs:
           name: php_app
           path: release.zip
   deploy:
-    runs-on: self-hosted
+    runs-on: cmsrunner1
     needs: build
     steps:
       - name: Download artifact from build job
