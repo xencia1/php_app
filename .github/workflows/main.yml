@@ -43,4 +43,4 @@ jobs:
 
       - name: Deploy to Azure VM
         run: |
-          scp -r -i ${{ secrets.VM_KEY }} -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} ${{ github.workspace }}/extracted/* ${{ secrets.USER }}@${{ secrets.HOST }}:/home/azureuser/prod
+           C:\Program Files\Git\bin\bash.exe -c "scp -r -i \"$GITHUB_WORKSPACE/${{ secrets.VM_KEY }}\" -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} \"$GITHUB_WORKSPACE/extracted/*\" ${{ secrets.USER }}@${{ secrets.HOST }}:/home/azureuser/prod"
