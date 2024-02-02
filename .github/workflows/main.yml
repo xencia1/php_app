@@ -39,7 +39,7 @@ jobs:
           name: php_app
 
       - name: Unzip artifact for deployment
-        run: Expand-Archive -Path ${{ github.workspace }}/php_app.zip -DestinationPath ${{ github.workspace }}/extracted
+        run: Expand-Archive -Path ${{ github.workspace }}/release.zip -DestinationPath ${{ github.workspace }}/extracted
 
       - name: Deploy to Azure VM
         run: |
