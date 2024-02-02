@@ -69,6 +69,6 @@ jobs:
           username : ${{secrets.USER}}          
           port : ${{secrets.PORT}}
           key : ${{secrets.VM_KEY}}          
-          source : ./
+          source : /Users/runnervm/actions-runner/_work/php_app/php_app
           target: /home/azureuser/prod
           strip_components: 1      
