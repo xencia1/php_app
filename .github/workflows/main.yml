@@ -45,4 +45,4 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to VM
-        run: scp -o StrictHostKeyChecking=no -r C:\Users\runnervm\actions-runner\_work\php_app\php_app\release.zip ${{ secrets.VM_USERNAME }}@${{ secrets.VM_PRIVATE_IP }}:/home/azureuser/prod
+        run: scp -o StrictHostKeyChecking=no -r C:\Users\runnervm\actions-runner\_work\php_app\php_app/ ${{ secrets.VM_USERNAME }}@${{ secrets.VM_PRIVATE_IP }}:/home/azureuser/prod
