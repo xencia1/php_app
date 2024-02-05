@@ -30,17 +30,28 @@ jobs:
           path: release.zip
 
   deploy:
-    runs-on: cmsrunner1
+    runs-on: self-hosted
     needs: build
     steps:
-      - name: Download artifact from build job
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: php_app
+          path: /path/to/local/folder
 
-      - name: Unzip artifact for deployment
-        run: Expand-Archive -Path ${{ github.workspace }}/release.zip -DestinationPath ${{ github.workspace }}/extracted
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.VM_KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            # Navigate to the folder where the artifact is downloaded
+            cd /path/to/local/folder
 
-      - name: Deploy to Azure VM
-        run: |
-           C:\Program Files\Git\bin\bash.exe -c "scp -r -i \"$GITHUB_WORKSPACE/${{ secrets.VM_KEY }}\" -o StrictHostKeyChecking=no -P ${{ secrets.PORT }} \"$GITHUB_WORKSPACE/extracted/*\" ${{ secrets.USER }}@${{ secrets.HOST }}:/home/azureuser/prod"
+            # Copy the artifact to the remote VM
+            scp -i /path/to/private/key.pem -P ${{ secrets.PORT }} release.zip ${{ secrets.USER }}@${{ secrets.HOST }}:/path/on/remote/vm
+
+            # Connect to the remote VM and perform deployment tasks
+            ssh -i /path/to/private/key.pem -p ${{ secrets.PORT }} ${{ secrets.USER }}@${{ secrets.HOST }} "cd /path/on/remote/vm && unzip release.zip && ./deploy.sh"
