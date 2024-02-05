@@ -38,6 +38,8 @@ jobs:
         with:
           name: php_app
           path: C:\Users\runnervm\actions-runner\_work\php_app\php_app
+      - name: unzip artifact for deployment
+        run: unzip -o release.zip
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.0
